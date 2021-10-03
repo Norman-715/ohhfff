@@ -142,7 +142,7 @@ if (isset($_POST['user']))
         	}
         site_name();     
     </script>
-<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Panel/logo.ico">
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/<?php echo $site_template;?>/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -151,7 +151,7 @@ if (isset($_POST['user']))
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
 <a class="navbar-brand" href="/">
-  <img src="https://raw.githubusercontent.com/lanundarat87/xxx/main/Res/Panel/logo.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+  <img src="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico" width="30" height="30" class="d-inline-block align-top" alt="">
   <?php echo $site_name;?>
 </a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -159,9 +159,6 @@ if (isset($_POST['user']))
 </button>
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-<li class="nav-item active">
-<a class="nav-link" href="http://<?php echo $site_ip_address;?>:89/">OpenVPN Monitor <span class="sr-only">(current)</span></a>
-</li>
 <li class="nav-item active">
 <a class="nav-link" href="<?php echo $site_paypal;?>"target="_blank">Paypal Donate <span class="sr-only">(current)</span></a>
 </li>

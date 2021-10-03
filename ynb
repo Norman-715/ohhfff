@@ -438,7 +438,7 @@ echo "   To display list of commands: menu"  | tee -a log-install.txt
 echo "   V2ray panel password and username: admin"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   Explanation of scripts and VPS setup" | tee -a log-install.txt
-echo "   follow this link: https://t.me/badboy897/"  | tee -a log-install.txt
+echo "   follow this link: https://t.me/hugo_pmbot  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Important Information"  | tee -a log-install.txt
 echo "   - Download Config OpenVPN : http://$MYIP/black.ovpn"  | tee -a log-install.txt

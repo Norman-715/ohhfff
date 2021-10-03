@@ -21,9 +21,8 @@ $server_lists_array=array(
 /* Service Variables */
 $port_ssh= '22, 143, 90'; 		                // SSH Ports
 $port_dropbear= '109, 110, 442'; 	       	// Dropbear Ports
-$port_ssl= '444';                               // SSL Ports
+$port_ssl= '443';                               // SSL Ports
 $port_squid= '3128, 8080, 8000, 3128'; 	       	// Squid Ports
-$ovpn_client= ''.$hosts.'/black.ovpn';        // OpenVPN Client Config
 
 /* Dont Edit Anything After This Line*/
 for ($row = 1; $row < 101; $row++)
@@ -190,7 +189,6 @@ if (isset($_POST['user']))
 										echo '<tr>'; echo '<td>Dropbear Port</td>'; echo '<td>'; echo $port_dropbear; echo '</td>'; echo '</tr>';
 										echo '<tr>'; echo '<td>SSL Port</td>'; echo '<td>'; echo $port_ssl; echo '</td>'; echo '</tr>';
 										echo '<tr>'; echo '<td>Squid Port</td>'; echo '<td>'; echo $port_squid; echo '</td>'; echo '</tr>';
-										echo '<tr>'; echo '<td>OpenVPN Config</td>'; echo '<td>';echo '<a href="http://';echo $hosts; echo "/"; echo "black.ovpn"; echo'">download config</a>'; echo '</td>'; echo '</tr>';
 										echo '<tr>'; echo '<td>Expiration Date</td>'; echo '<td>'; echo $datess; echo '</td>'; echo '</tr>';																							
 										echo '<tr>'; echo '<td> </td>'; echo '<td> </td>'; echo '</tr>';
 										echo '</table>';

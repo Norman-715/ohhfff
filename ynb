@@ -44,7 +44,7 @@ cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
 
 # set time GMT +2
-ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
+ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config

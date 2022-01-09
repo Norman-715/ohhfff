@@ -90,8 +90,8 @@ tar xf openvpn.tar
 sed -i $MYIP2 /etc/openvpn/server.conf
 
 # openvpn config
-cat > /home/vps/public_html/black.ovpn <<-END
-# OpenVPN Configuration By Black
+cat > /home/vps/public_html/hugo.ovpn <<-END
+# OpenVPN Configuration By hugo
 
 client
 dev tun
@@ -122,8 +122,8 @@ echo '<ca>' >> /home/vps/public_html/black.ovpn
 cat /etc/openvpn/keys/ca.crt >> /home/vps/public_html/black.ovpn
 echo '</ca>' >> /home/vps/public_html/black.ovpn
 cd /home/vps/public_html/
-tar -czf /home/vps/public_html/blackVPN.tar.gz black.ovpn
-tar -czf /home/vps/public_html/black.tar.gz black.ovpn
+tar -czf /home/vps/public_html/hugo.tar.gz hugk.ovpn
+tar -czf /home/vps/public_html/hugo.tar.gz hugo.ovpn
 cd
 
 # Deb9 OVPN Bug Workaround

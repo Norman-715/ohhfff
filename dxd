@@ -1,4 +1,2 @@
 # SSH/Dropbear Banner
-wget -O /etc/banner "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/banner"
-sed -i 's@#Banner none@Banner /etc/banner@g' /etc/ssh/sshd_config
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner"@g' /etc/default/dropbear
+wget -O /etc/bannerssh "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/banner"

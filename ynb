@@ -363,15 +363,6 @@ iptables-restore < /etc/iptables.up.rules
 cd
 apt-get install -y libxml-parser-perl
 
-#import menu
-apt-get install unzip
-cd /usr/bin/
-wget "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Menu/bashmenu.zip" 
-unzip bashmenu.zip
-chmod +x /usr/bin/*
-sed -i $MYIP2 /usr/bin/user-add-pptp;
-rm bashmenu.zip
-
 # finishing
 cd
 chown -R www-data:www-data /home/vps/public_html

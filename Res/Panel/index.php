@@ -225,6 +225,7 @@ if (isset($_POST['user']))
 </nav>		
 </header>
 	<div align="center">
+<img src="https://raw.githubusercontent.com/xxxnx" alt="" height="200" width"200"/>
         	<div class="col-md-4" align="center">
 				<div align="center">
     					<div align="center" class="card-body">

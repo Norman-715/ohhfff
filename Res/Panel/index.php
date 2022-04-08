@@ -7,6 +7,7 @@
 $site_name        = "HUGO SSH";
 $site_description = "Provider of Quality SSH, SSL, VPN Accounts";
 $site_template    = "lumen";
+$site_ip_address = "xxxxxxxxx"; // set site ip
 $invite_code_master = "hugo";
 $free_user_exp = "3";
 $vip_user_exp = "15";

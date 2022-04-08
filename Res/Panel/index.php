@@ -201,25 +201,24 @@ if (isset($_POST['user']))
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/<?php echo $site_template;?>/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 </head>
-<body>
-	<div class="navbar navbar-expand-lg navbar-dark bg-danger">
-		<div class="container">
-			<a class="navbar-brand" href="/"><?php echo $site_name;?></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigatebar" aria-controls="navigatebar" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navigatebar">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="https://t.me/hugo_ssh">HUGO SSH</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<header id="header" align="center">
-		<img src="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico" alt="" height="250" width"250"/>
-	</header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<a class="navbar-brand" href="/">
+  <img src="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+  <?php echo $site_name;?>
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+<li class="nav-item active">
+<a class="nav-link" href="<?php echo $site_paypal;?>"target="_blank">Paypal Donate <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="<?php echo $site_contact;?>"target="_blank">Contact Us <span class="sr-only">(current)</span></a>
+</li>
+</nav>		
+</header>
 	<div align="center">
         	<div class="col-md-4" align="center">
 				<div align="center">

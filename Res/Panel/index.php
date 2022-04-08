@@ -185,13 +185,16 @@ if (isset($_POST['user']))
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-<title><?php echo $site_name;?>   |   <?php echo $site_description;?>   |   </title>
-    	<script language='JavaScript'>
+<title><?php echo $site_name;?> | <?php echo $site_description;?></title>
+<meta name="description" content="<?php echo $site_description;?>"/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://raw.githubusercontent.com/dopekid30/-generate-sa-idnumbers/master/20201002_222944.jpg" />
+   <script language='JavaScript'>
         var txt = '   ' + document.title + '   '
         var speed = 400;
         var refresh = null;
         function site_name() 
-		{
+			{
             		document.title = txt;
             		txt = txt.substring(1, txt.length) + txt.charAt(0);
             		refresh = setTimeout("site_name()", speed);

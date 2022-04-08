@@ -217,7 +217,7 @@ if (isset($_POST['user']))
 		</div>
 	</div>
 	<header id="header" align="center">
-		<img src="/logo.png" alt="" height="250" width"250"/>
+		<img src="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico" alt="" height="250" width"250"/>
 	</header>
 	<div align="center">
         	<div class="col-md-4" align="center">

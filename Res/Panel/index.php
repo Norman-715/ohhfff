@@ -201,7 +201,7 @@ if (isset($_POST['user']))
         	}
         site_name();     
     </script>
-<link rel="shortcut icon" type="image/x-icon" href="/logo.png" >
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico">
 <meta name="description" content="<?php echo $site_description;?>"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/<?php echo $site_template;?>/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">

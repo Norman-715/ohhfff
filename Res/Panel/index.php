@@ -188,7 +188,7 @@ if (isset($_POST['user']))
 <title><?php echo $site_name;?> | <?php echo $site_description;?></title>
 <meta name="description" content="<?php echo $site_description;?>"/>
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://raw.githubusercontent.com/dopekid30/-generate-sa-idnumbers/master/20201002_222944.jpg" />
+<meta property="og:image" content="https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/logo.ico" />
    <script language='JavaScript'>
         var txt = '   ' + document.title + '   '
         var speed = 400;
@@ -201,7 +201,7 @@ if (isset($_POST['user']))
         	}
         site_name();     
     </script>
-<link rel="shortcut icon" type="image/x-icon" href="/logo.png" height="200" width"200">
+<link rel="shortcut icon" type="image/x-icon" href="/logo.png" >
 <meta name="description" content="<?php echo $site_description;?>"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/<?php echo $site_template;?>/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">

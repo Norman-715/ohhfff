@@ -11,6 +11,7 @@ $site_ip_address = "xxxxxxxxx"; // set site ip
 $site_paypal = "https://paypal.me/boobiesxd"; // set site paypal donate link
 $site_contact = "https://t.me/hugo_ssh"; // set site contact us link
 $invite_code_master = "hugoxdvip";
+$daily_limit_user = "5"; // set daily limit
 $free_user_exp = "3";
 $vip_user_exp = "15";
 
@@ -51,7 +52,26 @@ if (isset($_POST['user']))
 		$invite_code = htmlspecialchars($invite_code);
 		
 		
-		
+		} elseif (!empty($stream_check_user_error)) {
+                $check_daily_limit = ssh2_exec($connection, "wc -l < /home/vps/public_html/daily_user_limit.txt");
+                $check_daily_limit_error = ssh2_fetch_stream($check_user, SSH2_STREAM_STDERR);
+                stream_set_blocking($check_daily_limit_error, true);
+                stream_set_blocking($check_daily_limit, true);
+                $stream_check_daily_limit_error = stream_get_contents($check_daily_limit_error);
+                $stream_check_daily_limit = stream_get_contents($check_daily_limit);
+                if ($stream_check_daily_limit >= $daily_limit_user) {
+                    $ServerError = "Server Full, Try Again Tomorrow";
+                } else {
+                    $show = true;
+                    ssh2_exec($connection, "useradd $username -m -p $password -e $datess -d  /tmp/$username -s /bin/false");
+                    ssh2_exec($connection, 'echo "====================" >> /home/vps/public_html/daily_user_limits.txt');
+                }
+            }
+        } else {
+            die('Connection Failed...');
+	
+	
+	
 		if (empty($username)) 
 			{
 				$error = true;
@@ -359,3 +379,13 @@ navigation">
 		</div>
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+    

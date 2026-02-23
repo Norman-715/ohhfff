@@ -401,7 +401,7 @@ echo "                             Created By Hugo                             "
 echo "-----------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
 echo "Server Information"  | tee -a log-install.txt
-echo "   - Timezone    : Asia/Kuala Lumpur (GMT +8)"  | tee -a log-install.txt
+echo "   - Timezone    : Africa/Johannesburg (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban    : [ON]"  | tee -a log-install.txt
 echo "   - Dflate      : [ON]"  | tee -a log-install.txt
 echo "   - IPtables    : [ON]"  | tee -a log-install.txt

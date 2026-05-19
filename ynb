@@ -82,21 +82,10 @@ sed -i $MYIP2 /home/vps/public_html/index.php;
 service php7.0-fpm restart
 service nginx restart
 
-# install openvpn
-apt-get -y install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/OpenVPN/openvpn-debian.tar"
-cd /etc/openvpn/
-tar xf openvpn.tar
-sed -i $MYIP2 /etc/openvpn/server.conf
-
-# openvpn config
-cat > /home/vps/public_html/hugo.ovpn <<-END
-# OpenVPN Configuration By hugo
-
 client
 dev tun
 proto tcp
-setenv FRIENDLY_NAME "HUGO"
+setenv FRIENDLY_NAME "debian"
 remote $MYIP 443
 http-proxy $MYIP 8080
 remote-cert-tls server
@@ -118,27 +107,7 @@ verb 3
 pull
 
 END
-echo '<ca>' >> /home/vps/public_html/black.ovpn
-cat /etc/openvpn/keys/ca.crt >> /home/vps/public_html/black.ovpn
-echo '</ca>' >> /home/vps/public_html/black.ovpn
-cd /home/vps/public_html/
-tar -czf /home/vps/public_html/hugo.tar.gz hugk.ovpn
-tar -czf /home/vps/public_html/hugo.tar.gz hugo.ovpn
-cd
 
-# Deb9 OVPN Bug Workaround
-mkdir -p /dev/net
-mknod /dev/net/tun c 10 200
-chmod 600 /dev/net/tun
-
-# Deb9 OVPN Bug2 Workaround 
-sed -i 's@LimitNPROC=10@@g' /lib/systemd/system/openvpn@.service
-
-# Restart openvpn
-systemctl daemon-reload
-systemctl start openvpn@server
-systemctl enable openvpn@server
-systemctl status --no-pager openvpn@server
 
 # Setting UFW
 apt-get install ufw
@@ -147,14 +116,7 @@ ufw allow 443/tcp
 sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
 sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
 cat > /etc/ufw/before.rules <<-END
-# START OPENVPN RULES
-# NAT table rules
-*nat
-:POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to eth0
--A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
-COMMIT
-# END OPENVPN RULES
+
 END
 ufw status
 ufw disable
@@ -163,22 +125,6 @@ ufw disable
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
-# OpenVPN monitoring
-apt-get install -y gcc libgeoip-dev python-virtualenv python-dev geoip-database-extra uwsgi uwsgi-plugin-python
-wget -O /srv/openvpn-monitor.tar "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/openvpn-monitor.tar"
-cd /srv
-tar xf openvpn-monitor.tar
-cd openvpn-monitor
-virtualenv .
-. bin/activate
-pip install -r requirements.txt
-wget -O /etc/uwsgi/apps-available/openvpn-monitor.ini "https://raw.githubusercontent.com/dopekid30/AutoScriptDebian9/main/Res/Panel/openvpn-monitor.ini"
-ln -s /etc/uwsgi/apps-available/openvpn-monitor.ini /etc/uwsgi/apps-enabled/
-
-# GeoIP For OpenVPN Monitor
-mkdir -p /var/lib/GeoIP
-wget -O /var/lib/GeoIP/GeoLite2-City.mmdb.gz "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Panel/GeoLite2-City.mmdb.gz"
-gzip -d /var/lib/GeoIP/GeoLite2-City.mmdb.gz
 
 # install badvpn
 cd
@@ -260,20 +206,6 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 rm /root/webmin_1.801_all.deb
 service webmin restart
 
-# install stunnel
-apt-get install stunnel4 -y
-cat > /etc/stunnel/stunnel.conf <<-END
-cert = /etc/stunnel/stunnel.pem
-[dropbear]
-accept = 444
-connect = 127.0.0.1:442
-END
-
-# configure stunnel
-sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
-wget -O /etc/stunnel/stunnel.pem "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/stunnel.pem"
-service stunnel4 restart
-cd
 
 # install fail2ban
 apt-get -y install fail2ban
@@ -286,11 +218,6 @@ unzip ddos-deflate-master.zip
 cd ddos-deflate-master
 ./install.sh
 rm -rf /root/ddos-deflate-master.zip
-
-# banner /etc/banner
-wget -O /etc/banner "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/banner"
-sed -i 's@#Banner none@Banner /etc/banner@g' /etc/ssh/sshd_config
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner"@g' /etc/default/dropbear
 
 # Webmin Configuration
 sed -i '$ i\dope: acl adsl-client ajaxterm apache at backup-config bacula-backup bandwidth bind8 burner change-user cluster-copy cluster-cron cluster-passwd cluster-shell cluster-software cluster-useradmin cluster-usermin cluster-webmin cpan cron custom dfsadmin dhcpd dovecot exim exports fail2ban fdisk fetchmail file filemin filter firewall firewalld fsdump grub heartbeat htaccess-htpasswd idmapd inetd init inittab ipfilter ipfw ipsec iscsi-client iscsi-server iscsi-target iscsi-tgtd jabber krb5 ldap-client ldap-server ldap-useradmin logrotate lpadmin lvm mailboxes mailcap man mon mount mysql net nis openslp package-updates pam pap passwd phpini postfix postgresql ppp-client pptp-client pptp-server proc procmail proftpd qmailadmin quota raid samba sarg sendmail servers shell shorewall shorewall6 smart-status smf software spam squid sshd status stunnel syslog-ng syslog system-status tcpwrappers telnet time tunnel updown useradmin usermin vgetty webalizer webmin webmincron webminlog wuftpd xinetd' /etc/webmin/webmin.acl
@@ -367,7 +294,6 @@ apt-get install -y libxml-parser-perl
 cd
 chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/nginx restart
-/etc/init.d/openvpn restart
 /etc/init.d/cron restart
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
@@ -409,7 +335,7 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN     : TCP 443"  | tee -a log-install.txt
+
 echo "   - OpenSSH     : 22, 90, 143"  | tee -a log-install.txt
 echo "   - Stunnel4    : 444"  | tee -a log-install.txt
 echo "   - Dropbear    : 109, 110, 442"  | tee -a log-install.txt

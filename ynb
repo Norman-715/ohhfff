@@ -37,12 +37,6 @@ apt-get -y --purge remove apache2*;
 apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 
-# set repo
-echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list.d/webmin.list
-wget "http://www.dotdeb.org/dotdeb.gpg"
-cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
-wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
-
 # set time GMT +2
 ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
 
@@ -126,13 +120,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
 
-# install badvpn
-cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/BadVPN/badvpn-udpgw64"
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10
-
 # setting port ssh
 sed -i '/#Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/#Port 22/a Port  90' /etc/ssh/sshd_config
@@ -147,56 +134,6 @@ sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/defau
 echo "/bin/false" >> /etc/shells
 /etc/init.d/dropbear restart
 
-# install squid
-apt-get -y install squid
-cat > /etc/squid/squid.conf <<-END
-acl server dst xxxxxxxxx/32 localhost
-#acl checker src 188.93.95.137
-acl ports_ port 14 22 53 21 8080 8000 1193 1194 440 441 442 443 80
-http_port 8000
-http_port 8080
-access_log none
-cache_log /dev/null
-logfile_rotate 0
-http_access allow server
-#http_access allow checker
-http_access deny all
-forwarded_for off
-via off
-request_header_access Host allow all
-request_header_access Content-Length allow all
-request_header_access Content-Type allow all
-request_header_access All deny all
-hierarchy_stoplist cgi-bin ?
-coredump_dir /var/spool/squid
-refresh_pattern ^ftp: 1440 20% 10080
-refresh_pattern ^gopher: 1440 0% 1440
-refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
-refresh_pattern . 0 20% 4320
-visible_hostname lanundarat.tk
-END
-sed -i $MYIP2 /etc/squid/squid.conf;
-service squid restart
-
-# V2-ui Panel Setup
-#wget -O /usr/local/v2-ui-linux.tar.gz "https://www.dropbox.com/s/6yoi0gn1vcx6na9/v2-ui-linux.tar.gz"
-#cd /usr/local/
-#tar zxvf v2-ui-linux.tar.gz
-#rm v2-ui-linux.tar.gz -f
-#cd v2-ui
-#chmod +x v2-ui bin/v2ray-v2-ui bin/v2ctl
-#cp -f v2-ui.service /etc/systemd/system/
-cd
-
-# Start V2-ui 
-#systemctl daemon-reload
-#systemctl start v2-ui
-#systemctl enable v2-ui
-#systemctl status --no-pager v2-ui
-
-# Install PPTPVPN
-wget https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/install.sh
-sudo bash install.sh
 
 # installing webmin
 wget "https://raw.githubusercontent.com/Norman-715/ohhfff/main/Res/Other/webmin_1.801_all.deb"
